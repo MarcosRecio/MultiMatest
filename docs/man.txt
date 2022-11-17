@@ -1,0 +1,232 @@
+===== Manual de usuario =====
+
+==== Inicio ====
+
+Al arrancar se mostrará primeramente un aviso legal (como mandan los cánones) y acto seguido el programa preguntará por la dimensión de las matrices que se van a usar.
+   To start working you have to define the matrices dimension.
+   Then, the program will define the most common connectives like in
+   Łukasiewicz multivaluated logics model.
+  
+   Matrices dimension (<1):
+
+El valor introducido tiene que ser mayor que uno, una lógica con un único valor de verdad carece de sentido o es trivial. En principio, no hay límite superior para el tamaño de las matrices (el límite lo impone el hardware, la memoria disponible), pero hay que tener cuidado al introducir valores demasiado altos pues se intentará reservar demasiada memoria y esto puede ralentizar el ordenador.
+
+Una vez introducido el tamaño de las matrices, se definirá de modo automático el mínimo valor designado y las matrices para las principales conectivas según el modelo de las lógicas multivaludas de Łuckassiewicz. Según este modelo habrá un único valor designado: el mayor del conjunto. Por ejemplo, para matrices de dimensión 10, el mínimo valor designado será 9.
+
+Las matrices que se definirán son las siguientes: negación (N), implicación (C), conjunción (K) y disyunción (A). En el modelo mencionado las matrices se definen del siguiente modo:
+
+  * Negación:     ¬x =<sub>df</sub> (n - x)
+  * Implicación: x→y =<sub>df</sub> min {n, n - x + y}
+  * Conjunción:  x∧y =<sub>df</sub> min {x, y}
+  * Disyunción:  x∨y =<sub>df</sub> max {x, y}
+siendo n el máximo valor del conjunto (dimensión - 1).
+
+Tras preguntar por el tamaño de las matrices y definir las conectivas y el mínimo valor designado, el programa muestra el menú principal. Suponiendo que hemos introducido dimensión 3 para las matricesn se mostraría lo siguiente:
+
+<code>
+                             --- MaTest 1.0 ---
+                       Matrix Tester for logical matrices
+   Matrices dimension:    3x3
+   Min. Desig. Value:     2
+   Unary  connectives:    N 
+   Binary connectives:    C K A 
+   Formula:               Not defined
+   Evaluate values:       [All]   Designated   Not designated
+
+ Options:
+   V: Values evaluated.
+   M: Redefine the Minimum Designated Value.
+
+   N: New connective.           P: Print matrices into the screen.
+   D: Delete a connective.      W: Write matrices to external file.
+
+   F: Introduce a new Formula.
+   E: Evaluate formula.
+                                         A: About    H: Help    Q: Quit
+
+ Select your option:
+</code>
+
+En el menú principal se muestra la siguiente información: rótulo del programa, información acerca de los elementos actualmente definidos y el menú con las opciones disponibles.
+
+El rótulo contiene el nombre del programa, la versión y una descripcición breve.
+
+Debajo del rótulo se muestra una serie de mensajes con información acerca de los elementos definidos en ese momento en el programa, en base a los cuales se realizará la evaluación; todos estos valores se pueden modificar mediante las opciones disponibles, excepto la dimensión de las matrices (definido al inicio), para ver su uso vállase a la sección [[#Opciones]]. Los valores mostrados son:
+  * Dimensión de las matrices: muestra la dimensión que se ha definido para las matrices, en formato ''n×n''.
+
+  * Mínimo valor designado: el mínimo valor designado actualmente definido. Por defecto será ''n-1''; recordemos que el programa define este valor automáticamente según el modelo de las lógicas multivaluadas de Łukasiewicz.
+
+  * Conectivas unarias: el nombre de cada una de las conectivas unarias definidas, separadas por espacios. La única conectiva unaria definida por defecto es la negación (N).
+
+  * Conectivas binarias: el nombre de cada una de las conectivas binarias definidas, separadas por espacios. Por defecto se definen la implicación (C), la conjunción (K) y la disyunción (A).
+
+  * Fórmula: muestra la fórmula bien formada que se va a evaluar. Por defecto no se define ninguna fórmula bien formada, cuando no hay una fbf definida se muestra el mensaje: ''Not defined''.
+
+  * Valores evaluados: informa del estilo de la evaluación que se va a realizar. Dependiendo de qué valores busquemos nos interesará que se muestren unos u otros. Según el estilo también variarán las estadísticas mostradas después de la evaluación. La opción eleccionada se indica entre corchetes. Por defecto se mostrarán todos los valores. Las opciones son tres:
+    - All: se muestran todos los valores y se cuentan los valores designados.
+    - Designated: se muestran sólo los valores designados y se cuentan estos.
+    - Not Designated: se muestran sólo los valores no designados y se cuentan estos.
+
+El uso de las opciones se detalla en la sección [[#Opciones|siguiente]].
+
+
+==== Opciones ====
+En general las opciones se seleccionan introduciendo la letra correspondiente, en minúsculas o mayúsculas indistintamente, y pulsando //Enter// (a la antigua usanza). A continuación se detalla el uso de cada una de las opciones.
+
+
+=== v: Values evaluated ===
+Define el estilo de evaluación que se va a realizar, qué valores y estadísticas se mostrarán. El programa preguntará por los valores a mostrar:
+   What values do you want to be evaluated?
+   All, Designated, Not designated. (a/d/n):
+Las opciones son:
+  * A (all): el valor por defecto, se muestra la evaluación al completo. Esta opción es apropiada para dar una visión general de los valores evaluados sin centrarse en la búsqueda de valores en concreto, para generar tablas de verdad por ejemplo.\\ En las estadísticas se cuentan los valores designados.
+  * D (designated): muestra únicamente los valores designados.\\ En las estadísticas se cuentan los valores designados, también.
+  * N (not designated): muestra los valores no designados. Esta opción es útil cuando se busca falsar una fórmula para las matrices definidas, podemos ver más fácilmente para qué valores de qué variables la fórmula es falsa para dichas matrices.\\ En las estadísticas se contarán los valores no designados.
+
+
+=== m: Redefine the Minimum Designated Value ===
+Con esta opción podemos redefinir el mínimo valor designado a cualquier valor entre 0 y el máximo valor del conjunto [0, n-1]. Recordemos que, por defecto, el mínimo valor designado será el máximo valor del conjunto (n-1).
+
+
+=== p: Print matrices ===
+Muestra por pantalla las matrices en forma de tabla. A los valores designados les precede un asterisco. Primero se muestran las conectivas unarias y seguidamente las binarias, en ambos casos el orden de aparición es el mismo en el que hallan sido definidas.
+
+Por ejemplo, para matrices de dimensión 3 definidas automáticamente, esta opción mostraría lo siguiente:
+  
+    N |  0  1  2
+  ----+----------
+      | *2  1  0
+  
+    C |  0  1  2
+  ----+----------
+    0 | *2 *2 *2
+    1 |  1 *2 *2
+   *2 |  0  1 *2
+  
+    K |  0  1  2
+  ----+----------
+    0 |  0  0  0
+    1 |  0  1  1
+   *2 |  0  1 *2
+  
+    A |  0  1  2
+  ----+----------
+    0 |  0  1 *2
+    1 |  1  1 *2
+   *2 | *2 *2 *2
+
+
+=== w: Write matrices to an external file ===
+Esta opción guarda las matrices definidas en un archivo externo, en formato de texto plano. Lo primero que se preguntará es el nombre del archivo en el que se quieren guardar las matrices, si el archivo ya existe se preguntará si se desea sobreescribirlo.
+
+Las matrices se guardan en forma de tabla simple. En una línea va el nombre de la conectiva, en la siguiente línea van los valores de la matriz como números enteros separados por espacios, y las distintas filas en distintas líneas si la conectiva es binaria.
+
+Por ejemplo, como en el caso anterior, si guardamos esas mismas matrices a un archivo externo, este se vería así:
+
+  N
+  2 1 0 
+  
+  C
+  2 2 2 
+  1 2 2 
+  0 1 2 
+  
+  K
+  0 0 0 
+  0 1 1 
+  0 1 2 
+  
+  A
+  0 1 2 
+  1 1 2 
+  2 2 2 
+
+Actualmente esta opción no tiene demasiada utilidad, salvo quizá la de recordar ciertas matrices editadas por el usuario. Sin embargo, esta opción está pensada más bien para guardar un trabajo y poder recuperarlo después sin tener que definir de nuevo las matrices manualmente. Este formato de tabla simple pretende ser legible tanto por un humano como por una máquina, de modo que resulte sencillo editar unas matrices con un editor de textos, por ejemplo, y poderse importar fácilmente dentro del programa. De hecho, esta manera de definir matrices resultaría bastante más eficaz que la que permite actualmente el programa.
+
+
+=== n: New connective ===
+Esta opción sirve para definir nuevas matrices. Primeramente se nos preguntará por el tipo de conectiva a definir: unaria o bianaria.
+
+   Unary or Binary connective? (u/b):
+
+Seleccionamos **u** para las unarias o **b** para las binarias. A continuación se pide el nombre de la conectiva, esto es, una letra (notación polaca). Es indiferente aquí si introducimos la letra en minúscula o mayúscula, cuando escribamos una fórmula nos referiremos a ella siempre en mayúscula, por la convención ya mencionada y por tratarse de una conectiva.
+
+Si la conectiva ya existe se mostrará un mensaje de error, ''Connective is already defined'', y saltará al menú. En esta versión la manera de redefinir una conectiva es borrándola primero y añadiéndola de nuevo después.
+
+Para definir los valores de la matriz el programa nos pedirá, uno por uno, todos ellos. El programa irá indicando el subíndice del elemento de la matriz que se esté definiendo según el siguiente formato: ''Conectiva fila columna: ''; para las conectivas unarias sólo se mostrará un subíndice. El rango de valores permitidos es entre 0 y el máximo valor del conjunto ([0, dimension - 1]). Una característica nueva en esta versión al definir matrices, y que simplifica algo la definición manual de éstas, es la siguiente: al preguntar por un valor, si se pulsa //Enter// sin introducir nada, se asignará a la posición actual el último valor introducido; cuando varios valores se repiten, introducirlos así es mucho más rápido.
+
+Por ejmplo, si definimos la conectiva del bicondicional como E, con matrices de 3x3, quedaría así:
+
+   Select your option: n
+   Unary or Binary connective? (u/b): b
+   Binary connective name: e
+  E 0 0: 2
+  E 0 1: 1
+  E 0 2: 0
+  E 1 0: 1
+  E 1 1: 2
+  E 1 2: 1
+  E 2 0: 0
+  E 2 1: 1
+  E 2 2: 2
+  
+y la matriz correspondiente quedaría representada de este modo:
+
+    E |  0  1  2
+  ----+----------
+    0 | *2  1  0
+    1 |  1 *2  1
+   *2 |  0  1 *2
+
+Otro ejemplo, definamos una conectiva unaria llamada T que asigna siempre el máximo valor del conjunto a la variable que acompaña. En este caso, como todos los valores son iguales podemos definir el primero y para el resto símplemente pulsar Enter, así:
+
+   Select you option: n
+   Unary or Binary connective? (u/b): u
+   Unary connective name: t
+  T 0: 2
+  T 1: 
+  T 1: 2
+  T 2: 
+  T 2: 2
+
+
+==== f: Introduce a new Formula ====
+El programa nos preguntará por la fórmula que queremos evaluar. Las fórmulas deben introducirse en notación polaca según la siguiente convención: cualquier mayúscula es una conectiva, cualquier minúscula es una variable. Si se introduce una conectiva que no está definida se emitirá un error. Cualquier otro caracter que no sea ni una conectiva ni una variable se considera un caracter erróneo y el programa se quejará.
+
+Las fórmulas bien formadas (fbf) se detectan automáticamente, si se introduce una fórmula mal formada el programa emitirá un mensaje de error y pedira nuevamente una fórmula hasta que se introduzca una fbf. El programa detecta si en una fórmua dada o bien faltan o bien sobran variables para  Si la fórmula está mal formada habrá que revisar que las conectivas tengan el alcance adecuado, o bien hay demasiadas conectivas para las variables dadas, o bien demasiadas variables para las conectivas dadas.
+
+
+==== e: Evaluate formula ====
+Una vez que hayamos introducido una fórmula bien formada podemos evaluarla. Si aún no hemos introducido una fórmula el programa mostrará un mensaje de error y nuevamente el menú.
+
+Una evaluación mostrará por pantalla todas y cada una de las posibles valoraciones de una fórmula bien formada para las matrices dadas. Se muestran una por una las fórmulas a evaluar sustituyendo cada variable por su valor correspondiente y a continuación el valor global que se le asigna a la fórmula para esas valoraciones. Si se trata de un valor designado irá precedido de un asterisco.
+
+El orden de las valoraciones es el siguiente, se comienza con todas las variables a 0, después se coje la primera de las variables, por orden alfabético, dándola valores desde 0 hasta el máximo valor (dimensión - 1), después de cada ciclo aumenta en 1 el valor de la siguiente variable, así hasta que se dan todos los valores posibles. Para una fbf cualquiera, el número de valoraciones posibles obedece a la fórmula siguiente:\\
+''nº de valoraciones = nº de variables distintas <sup>dimensión de las matrices</sup>''
+
+Por ejemplo, dadas unas matrices 3x3 definidas por defecto (lógica trivaluada de Łucasiewicz), si introducimos una instancia del teorema correspondiente a la regla de eliminación de la conjunción ''(A∧B)->A'', que en notación polaca escribiríamos así: ''CKpqp'', obtendríamos lo siguiente:
+  
+  CKpqp
+  -----
+  CK000 2*
+  CK101 2*
+  CK202 2*
+  CK010 2*
+  CK111 2*
+  CK212 2*
+  CK020 2*
+  CK121 2*
+  CK222 2*
+
+Interpretando los resultados, vemos que en este caso todas las valoraciones son valores designados, lo cual significa que esta fórmula es tautológica para la lógica trivaluada de Łuckasiewicz. Este es un mero ejemplo, para ver cómo manejar el programa para evaluar distintas lógicas e interpretar los resultados véanse las siguientes secciones del manual.
+
+
+=== a: About ===
+
+
+=== h: Help ===
+
+
+=== q: Quit ===
+Símplemente sale del programa.
+

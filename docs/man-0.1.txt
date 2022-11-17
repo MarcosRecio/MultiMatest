@@ -1,0 +1,121 @@
+=== Inicio ===
+
+Nada más arrancar el programa preguntará por la dimensión de las matrices que se van a usar.
+  Introduzca la dimension de la matriz: 
+En esta versión el tamaño está limitado a matrices de 10x10 elementos como máximo.
+
+Una vez introducido el tamaño de las matrices, se definirá de modo automático el mínimo valor designado y las matrices para las principales conectivas según el modelo de las lógicas multivaludas de Łuckassiewicz. Habrá por tanto un único valor designado: el mayor del conjunto; por ejemplo, para matrices de dimensión 10, el mínimo valor designado será pues el 9.
+
+Las matrices que se definirán son las siguientes: negación (N), implicación (C), conjunción (K), disyunción (A), necesidad (L) y posibilidad (M). En las lógicas multivaludas de Łuckassiewicz las matrices quedan definidas del siguiente modo:
+
+  * Negación:     ¬x =<sub>def</sub> (n - x)
+  * Implicación: x→y =<sub>def</sub> min {n, n - x + y}
+  * Conjunción:  x∧y =<sub>def</sub> min {x, y}
+  * Disyunción:  x∨y =<sub>def</sub> max {x, y}
+siendo n la dimensión de las matrices.
+
+La posibilidad se define igual que la negación. La necesidad, con todos los valores designados.
+
+
+=== Opciones ===
+
+Tras preguntar por el tamaño de las matrices y definir las conectivas y el mínimo valor designado, el programa muestra el menú de opciones:
+  V) Redefinir minimo valor designado
+  
+  P) Ver matrices
+  Redefinir matrices:
+    I) Implicacion  C) Conjuncion  D) Disyuncion
+    N) Negacion     L) Necesidad   M) Posibilidad
+  
+  F) Introducir formula
+  E) Evaluar formula
+  
+  Q) Salir
+  
+  Elija su opcion:
+
+En general las opciones se seleccionan introduciendo la letra correspondiente, en minúsculas o mayúsculas indistintamente, y pulsando Enter. A continuación se detalla el uso de estas opciones.
+
+== Redefinir el mínimo valor designado (V) ==
+Con esta opción podemos redefinir el mínimo valor designado a cualquier valor entre 0 y el máximo valor del conjunto [0, n-1]. Recordemos que, por defecto, el mínimo valor designado será el máximo valor del conjunto (n-1).
+
+== Ver matrices (P) ==
+Muestra por pantalla las matrices en forma de tabla. A los valores designados les precede un asterisco.
+
+Por ejemplo, para matrices de dimensión 3 definidas automáticamente, esta opción mostraría lo siguiente:
+  
+  ->|  0  1  2
+  -------------
+   0| *2 *2 *2
+   1|  1 *2 *2
+  *2|  0  1 *2
+  
+   ^|  0  1  2
+  -------------
+   0|  0  0  0
+   1|  0  1  1
+  *2|  0  1 *2
+  
+   v|  0  1  2
+  -------------
+   0|  0  1 *2
+   1|  1  1 *2
+  *2| *2 *2 *2
+  
+   ~|  0  1  2
+  -------------
+    | *2  1  0
+  
+   L|  0  1  2
+  -------------
+    | *2 *2 *2
+  
+   M|  0  1  2
+  -------------
+    | *2  1  0
+
+== Redefinir matrices (N, I, C, D, L, M) ==
+Para redefinir una matriz, introducimos la letra correspondiente. El programa nos pedirá, uno por uno, todos los nuevos valores; es necesario (en esta versión) introducirlos todos. El programa irá indicando el subíndice del elemento de la matriz que se esté definiendo según el siguiente formato: ''Conectiva fila columna: '', en el caso de que se trate de una conectiva binaria; para las conectivas unarias nos olvidamos de las filas.
+
+Por ejmplo, si redefinimos la matriz Implicación con dimensión 10x10, quedaría resumidamente así:
+  Elija su opcion: i
+  Implicacion 0 0: 1
+  Implicacion 0 1: 2
+    .
+    .
+    .
+  Implicacion 9 9: 9
+
+
+== Introducir una fórmula (F) ==
+El programa nos preguntará por la fórmula que queremos evaluar. Las fórmulas deben introducirse en notación polaca, las conectivas van en mayúsculas y las variables en minúsculas. En esta versión la longitud de la fórmula está limitada a 256 caracteres y el número de variables limitado a 5, estas son: p, q, r, s, t. Cualquier otro caracter que no sea ni una conectiva ni una de estas cinco variables se considera un caracter erróneo y el programa se quejará.
+
+Las fórmulas bien formadas (fbf) se detectan automáticamente, si se introduce una fórmula mal formada el programa emitirá un mensaje de error y pedira nuevamente la fórmula hasta que se introduzca una fbf. Si la fórmula está mal formada habrá que revisar que las conectivas tengan el alcance adecuado, o bien hay demasiadas conectivas para las variables dadas, o bien demasiadas variables para las conectivas dadas.
+
+
+== Evaluar la fórmula (E) ==
+Una vez que hayamos introducido una fórmula bien formada podemos evaluarla. Si aún no hemos introducido una fórmula el programa mostrará un mensaje de error y nuevamente el menú.
+
+Al evaluar una fórmula se mostrarán por pantalla todas las posibles valoraciones de la fórmula en cuestión, cambiando cada variable por su valor y a continuación el valor correspondiente a la fórmula para esas valoraciones. Si se trata de un valor designado irá precedido de un asterisco.
+
+El orden de las valoraciones es el siguiente, se comienza con la primera de las variables en orden alfabético valorándola desde 0 hasta el máximo valor (dimensión - 1), después aumenta en 1 la siguiente variable, así hasta que se dan todos los valores posibles. Para un fbf cualquiera habrá un número de valoraciones posibles correspondiente al que se sigue de la fórmula:\\
+''nº de valoraciones = nº de variables distintas <sup>dimensión de las matrices</sup>''
+
+Por ejemplo, dadas unas matrices 3x3 definidas por defecto (lógica trivaluada de Łucasiewicz), si introducimos una instancia del teorema correspondiente a la regla de eliminación de la conjunción (A∧B)->A, que en notación polaca escribiríamos así: CKpqp, obtendríamos lo siguiente:
+  
+  CKpqp
+  -----
+  CK000 2*
+  CK101 2*
+  CK202 2*
+  CK010 2*
+  CK111 2*
+  CK212 2*
+  CK020 2*
+  CK121 2*
+  CK222 2*
+
+Interpretando los resultados, vemos que en este caso todas las valoraciones son valores designados, lo cual significa que esta fórmula es un teorema en la lógica trivaluada de Łuckasiewicz. Este es un mero ejemplo, para ver cómo manejar el programa para evaluar distintas lógicas e interpretar los resultados véanse las siguientes secciones del manual.
+
+== Salir (Q) ==
+Símplemente sale del programa.

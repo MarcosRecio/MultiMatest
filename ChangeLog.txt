@@ -1,0 +1,142 @@
+ MaTest-1.3.2 (29/03/11)
+
+ *  Lector de matrices. Se ha añadido una opción para abrir archivos de matrices
+    en la interfaz gráfica.
+
+
+
+ MaTest-1.3 (01/03/11)
+
+ *  Parser de fórmulas en notación estándar.
+
+ *  Rediseño de la interfaz gráfica.
+
+ *  Nueva representación de los resultados de la evaluación.
+
+ *  Los tipos de datos definidos y las funciones adquieren una estructura más
+    nítida al diferenciar en los tipos de datos su contenido de su
+    implementación para su uso dentro del programa. Se relega a Glib la admi-
+    nistración de memoria y el manejo de listas. liblogics depende de Glib.
+
+ *  Manejo de texto basado en buffers.
+
+ *  El modo texto queda inhabilitado hasta adaptarlo a la notación estándar.
+
+
+
+ MaTest-1.2 (03/03/10)
+
+ *  La capa base del programa se ha movido a una librería llamada liblogics.
+
+ *  Las funciones y tipos de datos de liblogics se pueden usar como una API, su
+    interfaz es similar a la API de GTK+. El prefijo de las funciones es 'll_',
+    de los tipos de datos 'Ll' y de las constantes 'LL_'.
+
+ *  Lenguaje natural principal: Español.
+
+ *  Cambio dinámico de la dimensión de las matrices.
+
+ *  El bicondicional (E) se define por defecto.
+
+ *  Añadidas opciones de línea de comandos con getopt, se detectan opciones
+    tanto en forma corta como en forma larga.
+
+ *  Dos modos de funcionamiento a elegir: modo interactivo en modo texto y modo
+    con interfaz gráfica (opción por defecto).
+
+ *  Interfaz gráfica basada en GTK+. Dispone de una serie de Widgets para la
+    definición de los elementos para la evaluación y un área de texto para
+    mostrar la salida.
+    Cuenta con dos botones ajustables para definir la Dimensión de las matrices
+    y el Mínimo Valor Designado; al cambiar la dimensión se redefinen las matri-
+    ces y el mvd según el modelo de las lógicas multivaluadas de Łukasiewicz. En
+    el modo con interfaz gráfica la dimensión está limitada a 16.
+    Cada conectiva cuenta con un botón para su edición el cual muestra un diálo-
+    go con una matriz de botones ajustables para definir individualmente cada
+    uno de los valores de la matriz.
+    Hay dos botones para definir conectivas nuevas, unarias o binarias, con
+    dialogos similares a los de edición.
+    Las matrices se imprimen con sus valores en hexadecimal.
+    Hay una entrada para introducir fórmulas en notación polaca.
+    En la barra de menús se puede seleccionar el tipo de evaluación. En el menú
+    Archivo hay una opción para guardar las matrices.
+
+
+
+ MaTest-1.0a (08/12/08)
+
+ *  Historia del programa.
+ 
+ *  Mejoras en las estadísticas de la evaluación.
+ 
+ *  Pequeña reestructuración del código.
+
+
+
+ MaTest-1.0 (25/11/08)
+ 
+ *  Código fuente modular.
+ 
+ *  Lenguaje natural del programa: cambiado al Inglés.
+ 
+ *  Reserva dinámica de memoria.
+ 
+ *  Dimensión de las matrices libre (limitado por la memoria disponible).
+ 
+ *  Posibilidad de definir nuevas conectivas y de borrar las ya existentes.
+ 
+ *  Posibilidad de guardar las matrices en un archivo externo. Éstas se guardan
+    en formato de tabla simple, legible tanto por una persona como por un
+    ordenador.
+ 
+ *  Las variables son registradas por demanda.
+ 
+ *  Menús rediseñados. Entrada de datos más robusta.
+ 
+ *  La detección de las fórmulas bien formadas en notación polaca se efectúa en
+    función de los datos proporcionados por el usuario según la siguiente con-
+    vención: cualquier letra mayúscula es una conectiva, cualquier letra minús-
+    cula es una variable.
+    Mejoras en la detección de errores en fórmulas mal formadas.
+ 
+ *  Creado un parser que transforma una fórmula bien formada en notación polaca
+    en una estructura de datos tipo árbol. 
+ 
+ *  Algoritmo de evaluación general. Las fbf individuales se evalúan mediante la
+    estructura en árbol (evaluación independiente de la notación empleada),
+    todas las posibilidades se calculan en función de la dimensión dada y de las
+    variables definidas por el usuario (independiente de valores predefinidos).
+ 
+ *  Posibilidad de seleccionar los valores mostrados en la evaluación, entre:
+    todos, valores designados o valores no designados.
+    También se muestran estadísticas después de la evaluación.
+
+
+
+ MaTest-0.1 (First release)
+
+ *  Archivo único de código fuente.
+ 
+ *  Reserva estática de memoria.
+ 
+ *  Las matrices están limitadas a una dimensión máxima de 10×10.
+ 
+ *  Las conectivas y el mínimo valor designado son definidos automáticamente,
+    después de que el usuario introduzca la dimensión de las matrices, según el
+    modelo de las lógicas multivaluadas de Łukasiewicz.
+ 
+ *  Mínimo valor designado redefinible.
+ 
+ *  6 conectivas predefinidas: implicación, negación, conjunción, disyunción,
+    necesidad y posibilidad.
+ 
+ *  Posibilidad de redefinir las matrices introduciendo los valores uno a uno.
+ 
+ *  5 variables: p, q, r, s, t.
+ 
+ *  Acepta fórmulas bien formadas en notación polaca, éstas se identifican
+    dependiendo de las conectivas y variables predefinidas.
+ 
+ *  Algoritmo de evaluación implementado en base a las conectivas y variables
+    predefinidas. Marca con un asterisco los valores designados.
+

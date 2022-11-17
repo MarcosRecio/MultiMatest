@@ -1,0 +1,19 @@
+«A finales de 1982 José Manuel Méndez Rodríguez y Benito García Noriega aunaron
+sus respectivos conocimientos de lógica e informática y su habilidad e ingenio
+para crear un programa evaluador de fórmulas lógicas al que llamaron Matrigüity.
+Escrito en Basic y desarrollado con éxito con los medios, bastante rudimenta-
+rios, de los que los autores disponían en la época (un par de ordenadores, de
+los cuales uno era casi un juguete), Matrigüity resultó ser una herramienta
+valiosa para el desarrollo de las investigaciones de Méndez y de sus discípulos
+y colaboradores.«
+
+«Matrigüity ha conocido tres versiones actualizadas para Windows™. La primera
+corrió a cargo de Pedro Méndez Rodríguez, la segunda, de Margarita Vázquez
+Campos, y la tercera, bajo la dirección de José Manuel Méndez, de Enrico
+Marchioni, en 2002.» (Gemma Robles, 2007).
+
+MaTest es una implementación libre y multiplataforma, reescrita desde cero en
+lenguaje C, que pretende incorporar y extender las características de sus pre-
+decesores, además de proporcionar código libre para el desarrollo de aplica-
+ciones nuevas de propósito similar.
+

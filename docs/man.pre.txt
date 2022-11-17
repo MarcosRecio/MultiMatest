@@ -1,0 +1,134 @@
+===== Manual de usuario =====
+
+==== Inicio ====
+
+Al arrancar se mostrará primeramente un aviso legal (como mandan los cánones) y acto seguido el programa preguntará por la dimensión de las matrices que se van a usar.
+   To start working you have to define the matrices dimension.
+   Then, the program will define the most common connectives like in
+   Łukasiewicz multivaluated logics model.
+  
+   Matrices dimension (<1):
+
+El valor introducido tiene que ser mayor que uno, una lógica con un único valor de verdad carece de sentido o es trivial. En principio, no hay límite superior para el tamaño de las matrices (el t lo pone el hardware, la memoria disponible), pero hay que tener cuidado al introducir valores demasiado altos pues se tratará de reservar mucha memoria y puede ralentizar el ordenador.
+
+Una vez introducido el tamaño de las matrices, se definirá de modo automático el mínimo valor designado y las matrices para las principales conectivas según el modelo de las lógicas multivaludas de Łuckassiewicz. Según este modelo habrá un único valor designado: el mayor del conjunto; por ejemplo, para matrices de dimensión 10, el mínimo valor designado será 9.
+
+Las matrices que se definirán son las siguientes: negación (N), implicación (C), conjunción (K) y disyunción (A). En el modelo mencionado las matrices se definen del siguiente modo:
+
+  * Negación:     ¬x =<sub>def</sub> (n - x)
+  * Implicación: x→y =<sub>def</sub> min {n, n - x + y}
+  * Conjunción:  x∧y =<sub>def</sub> min {x, y}
+  * Disyunción:  x∨y =<sub>def</sub> max {x, y}
+siendo n la dimensión de las matrices.
+
+==== Menú principal ====
+
+Tras preguntar por el tamaño de las matrices y definir las conectivas y el mínimo valor designado, el programa muestra el menú principal. Suponiendo que hemos introducido dimensión 3 para las matrices, se mostrará lo siguiente:
+<code>
+                             --- MaTest 1.0 ---
+                       Matrix Tester for logical matrices
+
+   Matrices dimension:    3x3
+   Min. Desig. Value:     2
+   Unary  connectives:    N 
+   Binary connectives:    C K A 
+   Formula:               Not defined
+   Evaluate values:       [All]   Designated   Not designated
+
+ Options:
+   V: Values evaluated.
+   M: Redefine the Minimum Designated Value.
+
+   N: New connective.           P: Print matrices into the screen.
+   D: Delete a connective.      W: Write matrices to external file.
+
+   F: Introduce a new Formula.
+   E: Evaluate formula.
+                                         A: About    H: Help    Q: Quit
+
+ Select your option:
+</code>
+
+En el menú principal se muestra la siguiente información: rótulo del programa, información acerca de los elementos actualmente definidos y el menú con las opciones disponibles.
+
+El rótulo contiene el nombre del programa, la versión y una descripcición breve.
+
+Debajo del rótulo se muestra una serie de mensajes con información acerca de los elementos definidos en ese momento en el programa, en base a los cuales se realizará la evaluación; todos estos valores se pueden modificar mediante las opciones disponibles, excepto la dimensión de las matrices (definido al inicio), para ver su uso vállase a la sección [[#Opciones]]. Los valores mostrados son:
+  * Dimensión de las matrices: muestra la dimensión que se ha definido para las matrices, en formato ''n×n''.
+
+  * Mínimo valor designado: el mínimo valor designado actualmente definido. Por defecto será ''n-1''; recordemos que el programa define este valor automáticamente según el modelo de las lógicas multivaluadas de Łukasiewicz.
+
+  * Conectivas unarias: el nombre de cada una de las conectivas unarias definidas, separadas por espacios. La única conectiva unaria definida por defecto es la negación (N).
+
+  * Conectivas binarias: el nombre de cada una de las conectivas binarias definidas, separadas por espacios. Por defecto se definen la implicación (C), la conjunción (K) y la disyunción (A).
+
+  * Fórmula: muestra la fórmula bien formada que se va a evaluar. Por defecto no se define ninguna fórmula bien formada, cuando no hay una fbf definida se muestra el mensaje: ''Not defined''.
+
+  * Valores evaluados: informa del estilo de la evaluación que se va a realizar. Dependiendo de qué valores busquemos nos interesará que se muestren unos u otros. Según el estilo también variarán las estadísticas mostradas después de la evaluación. La opción eleccionada se indica entre corchetes. Por defecto se mostrarán todos los valores. Las opciones son tres:
+    - All: se muestran todos los valores y se cuentan los valores designados.
+    - Designated: se muestran sólo los valores designados y se cuentan estos.
+    - Not Designated: se muestran sólo los valores no designados y se cuentan estos.
+
+El uso de las opciones se detalla en la sección [[#Opciones|siguiente]].
+
+
+==== Opciones ====
+
+En general las opciones se seleccionan introduciendo la letra correspondiente, en minúsculas o mayúsculas indistintamente, y pulsando Enter. A continuación se detalla el uso de estas opciones.
+
+=== V: Values evaluated ===
+Define el estilo de evaluación que se va a realizar, qué valores y estadísticas se mostrarán. El programa preguntará por los valores a mostrar:
+   What values do you want to be evaluated?
+   All, Designated, Not designated. (a/d/n):
+Las opciones son:
+  * A (all): el valor por defecto, se muestra la evaluación al completo. Esta opción es apropiada para dar una visión general de los valores evaluados sin centrarse en la búsqueda de valores en concreto, para generar tablas de verdad por ejemplo.\\ En las estadísticas se cuentan los valores designados.
+  * D (designated): muestra únicamente los valores designados.\\ En las estadísticas se cuentan los valores designados, también.
+  * N (not designated): muestra los valores no designados. Esta opción es útil cuando se busca falsar una fórmula para las matrices definidas, podemos ver más fácilmente para qué valores de qué variables la fórmula es falsa para dichas matrices.\\ En las estadísticas se contarán los valores no designados.
+
+=== M: Redefine the Minimum Designated Value ===
+Con esta opción podemos redefinir el mínimo valor designado a cualquier valor entre 1 y el máximo valor del conjunto [1, n-1], siendo n la dimensión de las matrices. Recordemos que, por defecto, el mínimo valor designado será el máximo valor del conjunto (n-1).
+
+=== N: New connective ===
+
+=== D: Delete a connective ===
+
+=== P: Print matrices into the screen ===
+Muestra por pantalla las matrices en forma de tabla. Los valores designados están marcados con un asterisco.
+
+Por ejemplo, para matrices de dimensión 3 definidas automáticamente, esta opción mostraría lo siguiente:
+  
+    N |  0  1  2
+  ----+----------
+      | *2  1  0
+  
+    C |  0  1  2
+  ----+----------
+    0 | *2 *2 *2
+    1 |  1 *2 *2
+   *2 |  0  1 *2
+  
+    K |  0  1  2
+  ----+----------
+    0 |  0  0  0
+    1 |  0  1  1
+   *2 |  0  1 *2
+  
+    A |  0  1  2
+  ----+----------
+    0 |  0  1 *2
+    1 |  1  1 *2
+   *2 | *2 *2 *2
+
+=== W: Write matrices to external file ===
+
+=== F: Introduce a new formula ===
+
+=== E: Evaluate formula ===
+
+=== A: About ===
+
+=== H: Help ===
+
+=== Q: Quit ===
+Símplemente sale del programa.
+

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">Acerca de MaTest</property>
+    <property name="type_hint">normal</property>
+    <property name="program_name">MaTest</property>
+    <property name="version">1.3</property>
+    <property name="copyright" translatable="yes">Copyright © 2008-2011 César González</property>
+    <property name="comments" translatable="yes">Un tester de matrices lógicas</property>
+    <property name="website">http://www.ceguel.es/MaTest</property>
+    <property name="website_label" translatable="yes">http://www.ceguel.es/MaTest</property>
+    <property name="license" translatable="yes">MaTest es software libre: usted puede redistribuirlo y/o modificarlo 
+bajo los términos de la Licencia Pública General GNU publicada 
+por la Fundación para el Software Libre, ya sea la versión 3 
+de la Licencia, o (a su elección) cualquier versión posterior.
+
+MaTest se distribuye con la esperanza de que sea útil, pero 
+SIN GARANTÍA ALGUNA; ni siquiera la garantía implícita 
+MERCANTIL o de APTITUD PARA UN PROPÓSITO DETERMINADO. 
+Consulte los detalles de la Licencia Pública General GNU para obtener 
+una información más detallada. 
+
+Debería haber recibido una copia de la Licencia Pública General GNU 
+junto a este programa. 
+En caso contrario, consulte http://www.gnu.org/licenses/.</property>
+    <property name="authors">Desarrollador:
+- César González Gutiérrez &lt;ceguel@gmail.com&gt;
+
+Colaboradores:
+ - José Manuel Méndez Rodríguez
+ - Benito García Noriega
+ - Gemma Robles Vázquez</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox1">
+        <property name="visible">True</property>
+        <property name="spacing">2</property>
+        <child>
+          <object class="GtkNotebook" id="notebook1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <child>
+              <object class="GtkLabel" id="label4">
+                <property name="visible">True</property>
+                <property name="xpad">4</property>
+                <property name="ypad">8</property>
+                <property name="label" translatable="yes">MaTest es un tester de matrices lógicas libre y multiplataforma, útil en la investigación en lógica matemática y lógica filosófica.
+
+Definidas unas conectivas como matrices, un mínimo valor designado y dada una fórmula bien formada, calcula todas las valoraciones de dicha fórmula y evalúa en cada caso si se trata de un valor designado o no.</property>
+                <property name="wrap">True</property>
+                <property name="selectable">True</property>
+                <property name="width_chars">45</property>
+              </object>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Acerca de</property>
+              </object>
+              <packing>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label3">
+                <property name="visible">True</property>
+                <property name="xpad">4</property>
+                <property name="ypad">8</property>
+                <property name="label" translatable="yes">MaTest es sucesor de Matrigüity, creado por José Manuel Méndez Rodríguez y Benito García Noriega a finales de 1982.</property>
+                <property name="wrap">True</property>
+                <property name="width_chars">45</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label2">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Historia</property>
+              </object>
+              <packing>
+                <property name="position">1</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
+            <property name="visible">True</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
