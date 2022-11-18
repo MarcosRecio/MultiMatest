@@ -27,6 +27,7 @@
 
 
 #include <glib.h>
+#include <glib/gprintf.h>
 #define GETTEXT_PACKAGE "any"
 #include <glib/gi18n-lib.h>
 
