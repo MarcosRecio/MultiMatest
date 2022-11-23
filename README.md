@@ -1,31 +1,27 @@
-# Gentzen-Forest
-Gentzen Forest is a system that applies Gentzen demostration system to logic trees
-
-### Example code:
-```python
-from GentzenForest import NonMonadicGentzenForest, inferences, logic
-
-premises = logic.Premises(['( not ((p and q) or (q -> r)))', '(p or q)'])
-premises.append('(p -> (a and b))')
-premises.append('(q -> (a and b))')
-
-# Creates an Gentzen system theorems generator with the basic elimination rules
-GF = NonMonadicGentzenForest(premises)
-
-# Creates extra inferences for GF
-Morgan1 = inferences.NonMonadicInference('( not (X or Y) )', '(( not X ) and ( not Y))')
-Morgan2 = inferences.NonMonadicInference('( not (X and Y) )', '(( not X ) or ( not Y))')
-
-# Adds the inferences
-GF.add_inference(Morgan1)
-GF.add_inference(Morgan2)
-GF.print_theorems()
-print()
-print('Deduced Theorems:')
-
-# Try to apply every inference rule for every theorem 3 times
-# (the theorems set will update with every iteration)
-GF.apply_inferences_in_order(3)
-
-GF.print_theorems()
+```
+Parses boolean expressions (as strings) to produce "calculation graph".
+## Propositional logic
+Given an expression like "a|((~a)&(b|c))", the function `parse` will output a
+list of "op types" (which is variable names, or logical operands), and the list
+of indices (relative to current op) that feed in to each operand. This is done
+in an order that allows computation of the boolean expression. For example, the
+above expression becomes:
+(position):   OPS:   INPUTS:
+0             a      []
+1             a      []
+2             ~      [-1]
+3             b      []
+4             c      []
+5             |      [-2, -1]
+6             &      [-4, -1]
+7             |      [-7, -1]
+## First-order logic
+The above is also extended to first-order logic, with relations, "for all", and
+"exists". For example, 'f(x, y)' is a relation, and 'all x . (f(x) -> g(x))' is
+a "for all" formula.
+Unary and binary relations are currently supported in this model. A binary
+relation f(x, y) is parsed as a ternary op, with op-type "R2", and arguments
+[f, x, y].
+For all "all x . k" is parsed as a binary op, with op-type "A" and arguments
+[x, k]. Similarly for "exists x . k"
 ```
