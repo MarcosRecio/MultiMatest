@@ -132,7 +132,7 @@ TRUE_SYMBOL = 'T'
 
 def propositional_language(num_variables=26):
   """Makes a propositional logic language."""
-  predicates = list(set([chr(ord('a') + i) for i in range(num_variables)])- {OR_SYMBOL})
+  predicates = list(set([chr(ord('a') + i) for i in range(num_variables)])-{OR_SYMBOL})
 
   return Language(
       collections.OrderedDict([
@@ -320,7 +320,7 @@ class Parser(object):
     """Returns list of `pyparsing.Expression` for various binary ops."""
     binary_op_symbols = {
         AND_SYMBOL: '& /\\',
-        OR_SYMBOL: '| \\/',
+        OR_SYMBOL: '| \\/ v',
         IMPLIES_SYMBOL: '> ->',
         XOR_SYMBOL: '^',
     }
