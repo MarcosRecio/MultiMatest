@@ -1,6 +1,9 @@
 import itertools
 import pandas as pd
 
+from auxiliar_utils import parallel_threads
+from functools import partial
+
 def unary_operator(matrix):
     return lambda x: matrix[x]
 
@@ -83,3 +86,16 @@ def evaluate_formula_in_system(formula, system, logic, verbose = False):
     else:
         
         return evaluation_results
+    
+
+
+def evaluate_formulas_in_system(system, formulas, logic):
+    evaluate_in_system = partial(evaluate_formula_in_system, system = system, logic= logic)
+    evaluations = parallel_threads(function=evaluate_in_system, iterable=formulas, threads=len(formulas))
+    return dict(zip(formulas, evaluations))
+
+def evaluate_formulas_in_systems(systems, formulas, logic):
+    evaluate_in_system =  partial(evaluate_formulas_in_system, formulas=formulas, logic= logic)
+    iterable = list(systems.values())
+    system_evaluations = parallel_threads(function = evaluate_in_system, iterable = iterable, threads = len(iterable))
+    return dict(zip(systems.keys(),system_evaluations))
