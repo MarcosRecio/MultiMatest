@@ -28,7 +28,7 @@ def evaluate_interpretation(interpretation, inputs, values):
     return evaluation
 
 
-def evaluate_formula_in_system(logic, system, formula, verbose = False):
+def evaluate_formula_in_system(formula, system, logic, verbose = False):
 
     # Parse the formula
     formula_parsed = logic.parse(formula)
