@@ -99,3 +99,15 @@ def evaluate_formulas_in_systems(systems, formulas, logic):
     iterable = list(systems.values())
     system_evaluations = parallel_threads(function = evaluate_in_system, iterable = iterable, threads = len(iterable))
     return dict(zip(systems.keys(),system_evaluations))
+
+def formula_evaluation_to_text(formula, evaluation, sep = '-'*20):
+    return f"\n{formula}\n{evaluation.to_string()}\n{sep}"
+
+def system_evaluations_to_text(evaluation_dict: dict, sep = '-'*20):
+    lines = [formula_evaluation_to_text(formula=formula, evaluation=evaluation, sep = sep) for formula, evaluation in evaluation_dict.items()]
+    return ''.join(lines)
+
+def general_evaluation_to_text(evaluation_dict, sep = '#'*20):
+    lines = [f'\n{system_name}\n{system_evaluations_to_text(system_evaluation_dict)}\n{sep}'
+            for system_name, system_evaluation_dict in evaluation_dict.items()]
+    return ''.join(lines)
